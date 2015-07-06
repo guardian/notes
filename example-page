@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html id="js-context" class="js-off is-not-modern id--signed-out" data-page-path="/media/2015/jul/06/wimbledon-2day-bbc-admits-defeat-over-format">
 <!--
@@ -79,6 +78,7 @@ http://developers.theguardian.com/join-the-team.html
 <!--[if lt IE 9]>
     <script src="https://assets.guim.co.uk/javascripts/components/html5shiv/53601738769ad38926a7dd48f3c4dfba/html5shiv.js"></script>
 <![endif]-->
+<script src="notes.js"></script>
 <style class="webfont" data-cache-name="GuardianEgyptianWeb" data-cache-file-woff2="https://assets.guim.co.uk/fonts/9849697bbb3a749ce02d4b85bf0b3cd8/GuardianEgyptianWeb.woff2.json" data-cache-file-woff="https://assets.guim.co.uk/fonts/8e277aad8fbf1f961880d60e8d6c966d/GuardianEgyptianWeb.woff.json" data-cache-file-ttf="https://assets.guim.co.uk/fonts/eaca2474d078b94837415198fc99ec2c/GuardianEgyptianWeb.ttf.json" data-cache-file-hinted-cleartype-woff2="https://assets.guim.co.uk/fonts/b70c7e4f8f121c72e9733eb752392723/GuardianEgyptianWebCleartypeHinted.woff2.json" data-cache-file-hinted-cleartype-woff="https://assets.guim.co.uk/fonts/711375cc26a0dd1cb8aa8d010cd0745e/GuardianEgyptianWebCleartypeHinted.woff.json" data-cache-file-hinted-cleartype-ttf="https://assets.guim.co.uk/fonts/be0b91af982199ffaf12626a71f4384d/GuardianEgyptianWebCleartypeHinted.ttf.json" data-cache-file-hinted-auto-woff2="https://assets.guim.co.uk/fonts/bd95a11f98e14108b38f9d145562e64b/GuardianEgyptianWebAutoHinted.woff2.json" data-cache-file-hinted-auto-woff="https://assets.guim.co.uk/fonts/d52052e8fb334148809d6839ae7572f0/GuardianEgyptianWebAutoHinted.woff.json" data-cache-file-hinted-auto-ttf="https://assets.guim.co.uk/fonts/6ebaaf8cc07d803b19bfe9d8f4ab4ee7/GuardianEgyptianWebAutoHinted.ttf.json"></style>
 <style class="webfont" data-cache-name="GuardianTextEgyptianWeb" data-cache-file-woff2="https://assets.guim.co.uk/fonts/ae8a1b17105d9a63b0da12c54a109721/GuardianTextEgyptianWeb.woff2.json" data-cache-file-woff="https://assets.guim.co.uk/fonts/38605aa9565c7c2dc03a18efa6b898d7/GuardianTextEgyptianWeb.woff.json" data-cache-file-ttf="https://assets.guim.co.uk/fonts/2319e461664b0f6349bfc8769325d0a1/GuardianTextEgyptianWeb.ttf.json" data-cache-file-hinted-cleartype-woff2="https://assets.guim.co.uk/fonts/0774ba7bdfe27ba60aebd56ea0a3f0f0/GuardianTextEgyptianWebCleartypeHinted.woff2.json" data-cache-file-hinted-cleartype-woff="https://assets.guim.co.uk/fonts/44b7865b2632d301403979424d45c8c2/GuardianTextEgyptianWebCleartypeHinted.woff.json" data-cache-file-hinted-cleartype-ttf="https://assets.guim.co.uk/fonts/58a8adc00565ef6ed333070546b9adbc/GuardianTextEgyptianWebCleartypeHinted.ttf.json" data-cache-file-hinted-auto-woff2="https://assets.guim.co.uk/fonts/4d71c7e8429c160aa1c6c9f53ec7e613/GuardianTextEgyptianWebAutoHinted.woff2.json" data-cache-file-hinted-auto-woff="https://assets.guim.co.uk/fonts/a486d05b6fb94dacc3d9f301996455b8/GuardianTextEgyptianWebAutoHinted.woff.json" data-cache-file-hinted-auto-ttf="https://assets.guim.co.uk/fonts/71469955ae2f2dd4e2991264499882a9/GuardianTextEgyptianWebAutoHinted.ttf.json"></style>
 <style class="webfont" data-cache-name="GuardianSansWeb" data-min-breakpoint="desktop" data-cache-file-woff2="https://assets.guim.co.uk/fonts/1976d273f3aeeab8863d462068fec10b/GuardianSansWeb.woff2.json" data-cache-file-woff="https://assets.guim.co.uk/fonts/472e25e5a5b2b9234d234c5e5bd49db4/GuardianSansWeb.woff.json" data-cache-file-ttf="https://assets.guim.co.uk/fonts/749d630536117d1122e5c9443ee79282/GuardianSansWeb.ttf.json" data-cache-file-hinted-cleartype-woff2="https://assets.guim.co.uk/fonts/9f1f440f898d80073faad1b814b549c8/GuardianSansWebCleartypeHinted.woff2.json" data-cache-file-hinted-cleartype-woff="https://assets.guim.co.uk/fonts/608402239772dedc2f96d758c12e1edf/GuardianSansWebCleartypeHinted.woff.json" data-cache-file-hinted-cleartype-ttf="https://assets.guim.co.uk/fonts/1cadca7e0fa46c2c7bec6a204c652961/GuardianSansWebCleartypeHinted.ttf.json" data-cache-file-hinted-auto-woff2="https://assets.guim.co.uk/fonts/fb16cde451d19d7f41a0207ec2710bb1/GuardianSansWebAutoHinted.woff2.json" data-cache-file-hinted-auto-woff="https://assets.guim.co.uk/fonts/0cdbc20e6f8f565a6ad7f67136a19756/GuardianSansWebAutoHinted.woff.json" data-cache-file-hinted-auto-ttf="https://assets.guim.co.uk/fonts/20ccadb8fabd8bc22d7a438f5d132a03/GuardianSansWebAutoHinted.ttf.json"></style>
@@ -137,7 +137,7 @@ document.documentElement.className=docClass.replace(/\bjs-off\b/g,'js-on');</scr
     .no-svg .inline-observer-logo-320 { background-image: url(https://assets.guim.co.uk/images/logo/c5669a2096d808752b0d5798be09ab0f/observer-logo-320.png); }
 </style>
 <!--[if (lt IE 9)&(!IEMobile)]>
-    
+
 
 
     <link rel="stylesheet"  type="text/css" href="https://assets.guim.co.uk/stylesheets/16850637feada85c1c59fcf110781ed8/old-ie.head.content.css" media="only x" />
@@ -146,7 +146,7 @@ document.documentElement.className=docClass.replace(/\bjs-off\b/g,'js-on');</scr
     </noscript>
 
 
-    
+
 
 
     <link rel="stylesheet"  type="text/css" href="https://assets.guim.co.uk/stylesheets/b3e07e2eac408c393a299663d3308546/old-ie.global.css" media="only x" />
@@ -157,7 +157,7 @@ document.documentElement.className=docClass.replace(/\bjs-off\b/g,'js-on');</scr
 
 <![endif]-->
 <!--[if (IE 9)&(!IEMobile)]>
-    
+
 
 
     <link rel="stylesheet"  type="text/css" href="https://assets.guim.co.uk/stylesheets/3fb8e83219fed8b6e1ebc51e2002432e/ie9.head.content.css" media="only x" />
@@ -166,7 +166,7 @@ document.documentElement.className=docClass.replace(/\bjs-off\b/g,'js-on');</scr
     </noscript>
 
 
-    
+
 
 
     <link rel="stylesheet"  type="text/css" href="https://assets.guim.co.uk/stylesheets/354126eb9203efdc329ce558ff47fd3b/ie9.global.css" media="only x" />
@@ -524,7 +524,7 @@ travel
 <div class="js-breaking-news-placeholder breaking-news breaking-news--hidden breaking-news--fade-in" data-link-name="breaking news" data-component="breaking-news"></div>
 <div class="l-side-margins">
 <article id="article" data-test-id="article-root" class="content content--article tonal tonal--tone-news section-media
-        
+
         " itemscope itemtype="http://schema.org/NewsArticle" role="main">
 <header class="content__head tonal__head tonal__head--tone-news
     ">
@@ -566,12 +566,12 @@ Photograph: BBC
 </figcaption>
 </figure>
 <div class="content__meta-container js-content-meta js-football-meta u-cf
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     ">
 <p class="byline" data-link-name="byline" data-component="meta-byline"><span itemscope="" itemtype="http://schema.org/Person" itemprop="author">
 <a rel="author" class="tone-colour" itemprop="url name" data-link-name="auto tag link" href="http://www.theguardian.com/profile/estheraddley">Esther Addley</a></span></p>
@@ -871,7 +871,7 @@ Commenting has been disabled for this account (<a href="/community-faqs#321a">wh
 View more comments
 </button>
 <script type="text/template" id="tmpl-comment-box">
-                        
+
 <form class="component js-comment-box d-comment-box">
 
     <div class="d-comment-box__meta">
@@ -1639,4 +1639,5 @@ var userDisplayName=getUserDisplayNameFromCookie();if(userDisplayName){document.
 insertUserName();})(guardian.isModernBrowser&&'atob'in window&&'classList'in document.documentElement);</script>
 <div id="dfp-ad--pageskin-inread" class="js-ad-slot ad-slot ad-slot--dfp ad-slot--pageskin-inread ad-slot--page-skin" data-link-name="ad slot pageskin-inread" data-test-id="ad-slot-pageskin-inread" data-name="pageskin-inread" data-label="false" data-refresh="false" data-out-of-page="true" data-wide="1,1"> </div>
 </body>
+<script src="notes.js"></script>
 </html>
