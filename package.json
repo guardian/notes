@@ -1,0 +1,6 @@
+{
+    "name": "notes - guardian inline comments",
+    "dependencies": {
+        "st": "*"
+    }
+}
