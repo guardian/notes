@@ -1,3 +1,13 @@
 .social-icon--note {
     background-color: #951c55;
 }
+
+ul.d-thread--notes {
+    margin-top: 15px;   
+}
+.d-thread--notes li {
+    border-top: 0.0625rem solid #eaeaea;
+}
+ul.d-thread--notes>li:before {
+    background-color: white;
+}

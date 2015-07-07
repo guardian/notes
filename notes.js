@@ -32,7 +32,7 @@ function displayNoteForm(event) {
         '</div>' +
         '</div>' +
         '</div>' +
-        '<ul class="d-thread d-thread--comments js-note-list">' +
+        '<ul class="d-thread d-thread--notes js-note-list">' +
         '</ul>';
 
     var selection = window.getSelection();
@@ -41,11 +41,11 @@ function displayNoteForm(event) {
 
     event.preventDefault();
     p.innerHTML = p.innerHTML + form;
-    
+
     $('.js-note-cancel').click(function() {
         removeNote('.js-note-form');
     });
-    
+
     $('.js-note-submit').click(function() {
         addNote('.js-note-list');
     });
@@ -58,9 +58,50 @@ function removeNote(el) {
 
 function addNote(el) {
     var parentEl = document.querySelector(el),
-        childEl = document.createElement('li');
-    childEl.textContent = $('.js-note-form textarea').val();
-    parentEl.appendChild(childEl);
+        childEl = document.createElement('li'),
+        text = $('.js-note-form textarea').val(),
+        noteTemplate =         
+        '<div class="d-comment__inner d-comment__inner--top-level">'+
+            '<div class="d-comment__meta">' +
+                '<span class="d-comment__avatar-wrapper">' +
+                '<img src="http://genfu.azurewebsites.net/content/ninja.png" alt="" class="d-comment__avatar">' +
+                '</span>' +
+                '<div class="d-comment__meta-text">' +
+                '<span itemscope="" itemprop="author" itemtype="http://schema.org/Person" title="Ninja" class="d-comment__author">' +
+                '<a href="https://profile.theguardian.com/user/id/10708888" itemprop="url">' +
+                '<span itemprop="givenName">Ninja</span></a></span>' +
+                '<div class="d-comment__timestamp">' +
+                '<a href="http://discussion.theguardian.com/comment-permalink/54497806" class="d-comment__timestamp block-time">' +
+                '<time class="js-timestamp" itemprop="dateCreated" datetime="2015-06-26T15:46:05Z" data-timestamp="1435329965000" data-relativeformat="med" title="Permalink to this comment (7 July 2015)">7 July 2015</time>' +
+                '<i class="i i-comment-anchor"></i>' +
+                '</a>' +
+                '</div>' +
+                '</div>' +
+            '</div>' +
+
+            '<div class="d-comment__content">' +
+                '<div class="d-comment__recommend js-recommend-comment" data-comment-id="54497806" data-user-id="10708888" data-recommend-count="0" title="0 recommendations">' +
+                '<button class="u-button-reset d-comment__recommend-button">' +
+                '<span class="d-comment__recommend-pulse"></span>' +
+                '<i></i>' +
+                '</button>' +
+                '<span class="d-comment__recommend-count js-recommend-count">' +
+                '<span class="d-comment__recommend-count--old">0</span>' +
+                '<span class="d-comment__recommend-count--new">1</span>' +
+                '</span>' +
+                '</div>' +
+
+                '<div class="d-comment__main ">' +
+                '<div class="d-comment__body" itemprop="text">' +
+                '<p class="js-note-text">'+ text +'</p>' +
+                '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+        childEl.innerHTML = noteTemplate;
+        parentEl.appendChild(childEl);
+        
+        $('.js-note-form textarea').val('');
 }
 
 function renderComments(node) {}
