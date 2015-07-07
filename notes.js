@@ -32,7 +32,7 @@ function displayNoteForm(event) {
         '</div>' +
         '<ul class="d-thread d-thread--notes js-note-list">' +
         '</ul>';
-    
+
     var selection = window.getSelection();
 
     var p = $(selection.baseNode).closest('p')[0];
@@ -42,7 +42,9 @@ function displayNoteForm(event) {
     highlightSelection(selection);
 
     event.preventDefault();
-    p.innerHTML = p.innerHTML + form;
+
+    $(p).after(form);
+    //p.innerHTML = p.innerHTML + form;
 
     /*$('.js-note-cancel').click(function() {
         removeNote('.js-note-form');
@@ -51,7 +53,7 @@ function displayNoteForm(event) {
 
     $('.js-note-submit').click(function() {
         addNote('.js-note-list', pid, range.start, range.end);
-        //unHighlightText(p);
+        unHighlightText(p);
         highlightSource();
         countNote();
     });
@@ -95,7 +97,7 @@ function highlightSource() {
 }
 
 function unHighlightText(node) {
-        node.innerHTML = node.innerHTML.replace(/<\/?span[^>]*>/g,"");
+    node.innerHTML = node.innerText; // such a hack - mind you all of this is the worst code I have ever written
 }
 
 function toggleNote() {
@@ -122,7 +124,7 @@ function addNote(el, pid, start, end) {
     var parentEl = document.querySelector(el),
         childEl = document.createElement('li'),
         text = $('.js-note-form textarea').val(),
-        noteTemplate =         
+        noteTemplate =
         '<div class="d-comment__inner d-comment__inner--top-level">'+
         '<div class="d-comment__meta">' +
         '<span class="d-comment__avatar-wrapper">' +
@@ -156,6 +158,7 @@ function addNote(el, pid, start, end) {
     childEl.setAttribute('data-end', end);
 
     parentEl.appendChild(childEl);
+    //$(parentEl).after(childEl);
 
     $('.js-note-form textarea').val('');
 }
