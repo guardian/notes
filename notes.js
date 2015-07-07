@@ -11,10 +11,10 @@ function bootstrap() {
 }
 
 function displayNoteForm(event) {
-    var form = '<div class="d-comment-box__content js-note-input">' +
+    var form = '<div class="d-comment-box__content js-note-form">' +
         '<div class="d-comment-box__messages"></div>' +
         '<textarea name="body" class="textarea d-comment-box__body" placeholder="Join the discussion…"></textarea>' +
-        '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit" disabled="disabled">Post your comment</button>' +
+        '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit js-note-submit">Post your note</button>' +
         '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit js-note-cancel">Cancel</button>' +
         '<span class="u-fauxlink d-comment-box__preview" role="button">Preview</span>' +
         '<span class="u-fauxlink d-comment-box__hide-preview" role="button">Hide preview</span>' +
@@ -31,7 +31,9 @@ function displayNoteForm(event) {
         '<div class="d-comment-box__preview-body"></div>' +
         '</div>' +
         '</div>' +
-        '</div>';
+        '</div>' +
+        '<ul class="d-thread d-thread--comments js-note-list">' +
+        '</ul>';
 
     var selection = window.getSelection();
     var p = $(selection.baseNode).closest('p')[0];
@@ -40,12 +42,25 @@ function displayNoteForm(event) {
     event.preventDefault();
     p.innerHTML = p.innerHTML + form;
     
-    $('.js-note-cancel').click(removeNoteForm);
+    $('.js-note-cancel').click(function() {
+        removeNote('.js-note-form');
+    });
+    
+    $('.js-note-submit').click(function() {
+        addNote('.js-note-list');
+    });
 }
 
-function removeNoteForm() {
-    var formEl = document.querySelector(".js-note-input");
-    formEl.parentElement.removeChild(formEl);
+function removeNote(el) {
+    var removeEl = document.querySelector(el);
+    removeEl.parentElement.removeChild(removeEl);
+}
+
+function addNote(el) {
+    var parentEl = document.querySelector(el),
+        childEl = document.createElement('li');
+    childEl.textContent = $('.js-note-form textarea').val();
+    parentEl.appendChild(childEl);
 }
 
 function renderComments(node) {}
