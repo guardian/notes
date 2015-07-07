@@ -17,9 +17,6 @@ function displayNoteForm(event) {
         '<div class="d-comment-box__messages"></div>' +
         '<textarea name="body" class="textarea d-comment-box__body" placeholder="Join the discussion…"></textarea>' +
         '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit js-note-submit">Post your note</button>' +
-        '<span class="u-fauxlink d-comment-box__preview" role="button">Preview</span>' +
-        '<span class="u-fauxlink d-comment-box__hide-preview" role="button">Hide preview</span>' +
-        '<span class="u-fauxlink d-comment-box__cancel" role="button">Cancel</span>' +
         '<ul class="d-comment-box__formatting-controls">' +
         '<li class="d-comment-box__formatting-bold" title="Bold">B</li>' +
         '<li class="d-comment-box__formatting-italic" title="Italic">i</li>' +
@@ -35,22 +32,70 @@ function displayNoteForm(event) {
         '</div>' +
         '<ul class="d-thread d-thread--notes js-note-list">' +
         '</ul>';
-
+    
     var selection = window.getSelection();
+
     var p = $(selection.baseNode).closest('p')[0];
     var pid = p.attributes.name.value;
+
+    var range = getRangeData(selection);
+    highlightSelection(selection);
 
     event.preventDefault();
     p.innerHTML = p.innerHTML + form;
 
     /*$('.js-note-cancel').click(function() {
         removeNote('.js-note-form');
+        unHighlightText(p);
     });*/
 
     $('.js-note-submit').click(function() {
-        addNote('.js-note-list');
+        addNote('.js-note-list', pid, range.start, range.end);
+        //unHighlightText(p);
+        highlightSource();
         countNote();
     });
+}
+
+function highlight(node, startOffset, endOffset) {
+    var text = node.innerHTML;
+    var beginning = text.substring(0, startOffset);
+    var middle = text.substring(startOffset, endOffset);
+    var end = text.substring(endOffset);
+
+    node.innerHTML = beginning + '<span class="note-highlight">' + middle + '</span>' + end;
+}
+
+function getRangeData(selection) {
+    var p = $(selection.baseNode).closest('p')[0];
+    var range = selection.getRangeAt(0);
+    var startOffset = range.startOffset;
+    var endOffset = range.endOffset;
+    return { start: startOffset, end: endOffset };
+}
+
+function highlightSelection(selection) {
+    var p = $(selection.baseNode).closest('p')[0];
+    var range = getRangeData(selection);
+    highlight(p, range.start, range.end);
+}
+
+function highlightSource() {
+    $('.js-note-list li').hover(function() {
+        var startOffset = this.attributes['data-start'].value;
+        var endOffset = this.attributes['data-end'].value;
+        var id = this.attributes['data-pid'].value;
+        var p = $('p[name=' + id + ']')[0];
+        highlight(p, startOffset, endOffset);
+    }, function() {
+        var id = this.attributes['data-pid'].value;
+        var p = $('p[name=' + id + ']')[0];
+        unHighlightText(p);
+    });
+}
+
+function unHighlightText(node) {
+        node.innerHTML = node.innerHTML.replace(/<\/?span[^>]*>/g,"");
 }
 
 function toggleNote() {
@@ -73,47 +118,46 @@ function removeNote(el) {
     removeEl.parentElement.removeChild(removeEl);
 }
 
-function addNote(el) {
+function addNote(el, pid, start, end) {
     var parentEl = document.querySelector(el),
         childEl = document.createElement('li'),
         text = $('.js-note-form textarea').val(),
         noteTemplate =         
         '<div class="d-comment__inner d-comment__inner--top-level">'+
-            '<div class="d-comment__meta">' +
-                '<span class="d-comment__avatar-wrapper">' +
-                '<img src="http://genfu.azurewebsites.net/content/ninja.png" alt="" class="d-comment__avatar">' +
-                '</span>' +
-                '<div class="d-comment__meta-text">' +
-                '<span itemscope="" itemprop="author" itemtype="http://schema.org/Person" title="Ninja" class="d-comment__author">' +
-                '<a href="https://profile.theguardian.com/user/id/10708888" itemprop="url">' +
-                '<span itemprop="givenName">Ninja</span></a></span>' +
-                '<div class="d-comment__timestamp">' +
-                '<a href="http://discussion.theguardian.com/comment-permalink/54497806" class="d-comment__timestamp block-time">' +
-                '<time class="js-timestamp" itemprop="dateCreated" datetime="2015-06-26T15:46:05Z" data-timestamp="1435329965000" data-relativeformat="med" title="Permalink to this comment (7 July 2015)">7 July 2015</time>' +
-                '<i class="i i-comment-anchor"></i>' +
-                '</a>' +
-                '</div>' +
-                '</div>' +
-            '</div>' +
+        '<div class="d-comment__meta">' +
+        '<span class="d-comment__avatar-wrapper">' +
+        '<img src="http://genfu.azurewebsites.net/content/ninja.png" alt="" class="d-comment__avatar">' +
+    '</span>' +
+        '<div class="d-comment__meta-text">' +
+        '<span itemscope="" itemprop="author" itemtype="http://schema.org/Person" title="Ninja" class="d-comment__author">' +
+    '<a href="https://profile.theguardian.com/user/id/10708888" itemprop="url">' +
+    '<span itemprop="givenName">Ninja</span></a></span>' +
+        '<div class="d-comment__timestamp">' +
+        '<a href="http://discussion.theguardian.com/comment-permalink/54497806" class="d-comment__timestamp block-time">' +
+    '<time class="js-timestamp" itemprop="dateCreated" datetime="2015-06-26T15:46:05Z" data-timestamp="1435329965000" data-relativeformat="med" title="Permalink to this comment (7 July 2015)">7 July 2015</time>' +
+        '<i class="i i-comment-anchor"></i>' +
+        '</a>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
 
-            '<div class="d-comment__content">' +
-                '<div class="d-comment__recommend js-recommend-comment" data-comment-id="54497806" data-user-id="10708888" data-recommend-count="0" title="0 recommendations">' +
-                '<button class="u-button-reset d-comment__recommend-button">' +
-                '<span class="d-comment__recommend-pulse">x</span>' +
-                '</button>' +
-                '</div>' +
-
-                '<div class="d-comment__main ">' +
-                '<div class="d-comment__body" itemprop="text">' +
-                '<p class="js-note-text">'+ text +'</p>' +
-                '</div>' +
-                '</div>' +
-            '</div>' +
+        '<div class="d-comment__content">' +
+        '<div class="d-comment__main ">' +
+        '<div class="d-comment__body" itemprop="text">' +
+        '<p class="js-note-text">'+ text +'</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
         '</div>';
-        childEl.innerHTML = noteTemplate;
-        parentEl.appendChild(childEl);
-        
-        $('.js-note-form textarea').val('');
+    childEl.innerHTML = noteTemplate;
+
+    childEl.setAttribute('data-pid', pid);
+    childEl.setAttribute('data-start', start);
+    childEl.setAttribute('data-end', end);
+
+    parentEl.appendChild(childEl);
+
+    $('.js-note-form textarea').val('');
 }
 
 function renderComments(node) {}

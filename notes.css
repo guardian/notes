@@ -20,3 +20,6 @@ ul.d-thread--notes>li:before {
     padding-bottom: 0;
 }
 
+.note-highlight {
+    background-color: rgba(113,252,159,0.8);
+ }
