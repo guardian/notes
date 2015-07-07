@@ -1,3 +1,7 @@
+.d-n { display: none; }
+.d-b { display: block; }
+
+/* style */
 .social-icon--note {
     background-color: #951c55;
 }
@@ -5,9 +9,14 @@
 ul.d-thread--notes {
     margin-top: 15px;   
 }
+ul.d-thread--notes>li:before {
+    content: none;
+    background-color: white;
+}
 .d-thread--notes li {
     border-top: 0.0625rem solid #eaeaea;
 }
-ul.d-thread--notes>li:before {
-    background-color: white;
+.d-thread--notes .d-comment__main {
+    padding-bottom: 0;
 }
+

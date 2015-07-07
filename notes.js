@@ -8,6 +8,8 @@ function bootstrap() {
     noteEl.innerHTML = noteHTML + '<li class="social__item" data-link-name="note"><a class="rounded-icon social-icon social-icon--note" target="_blank" href="#"><svg width="22" height="22" viewBox="0 0 20 20" style="padding: 10px 0 0 8px;"><path d="M13 0l1 1v7l-1 1H7l-2 3H4V9H2L1 8V1l1-1h11z" style="fill: white;"></path></svg></a></li>';
 
     $('.social-icon--note').click(displayNoteForm);
+    $('.js-note-icon').click(toggleNote);
+    countNote();
 }
 
 function displayNoteForm(event) {
@@ -15,7 +17,6 @@ function displayNoteForm(event) {
         '<div class="d-comment-box__messages"></div>' +
         '<textarea name="body" class="textarea d-comment-box__body" placeholder="Join the discussion…"></textarea>' +
         '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit js-note-submit">Post your note</button>' +
-        '<button type="submit" class="u-button-reset button button--large button--primary submit-input d-comment-box__submit js-note-cancel">Cancel</button>' +
         '<span class="u-fauxlink d-comment-box__preview" role="button">Preview</span>' +
         '<span class="u-fauxlink d-comment-box__hide-preview" role="button">Hide preview</span>' +
         '<span class="u-fauxlink d-comment-box__cancel" role="button">Cancel</span>' +
@@ -42,13 +43,29 @@ function displayNoteForm(event) {
     event.preventDefault();
     p.innerHTML = p.innerHTML + form;
 
-    $('.js-note-cancel').click(function() {
+    /*$('.js-note-cancel').click(function() {
         removeNote('.js-note-form');
-    });
+    });*/
 
     $('.js-note-submit').click(function() {
         addNote('.js-note-list');
+        countNote();
     });
+}
+
+function toggleNote() {
+    $('.js-note-form').toggleClass("d-n");
+    $('.js-note-list').toggleClass("d-n");
+}
+
+function countNote() {
+    var count = $('.js-note-list li').length;
+    if (count > 0) {
+        $('.js-note-icon').addClass("d-b");
+        document.querySelector('.js-note-count').textContent = count;
+    } else {
+        $('.js-note-icon').addClass("d-n");
+    }
 }
 
 function removeNote(el) {
@@ -82,13 +99,8 @@ function addNote(el) {
             '<div class="d-comment__content">' +
                 '<div class="d-comment__recommend js-recommend-comment" data-comment-id="54497806" data-user-id="10708888" data-recommend-count="0" title="0 recommendations">' +
                 '<button class="u-button-reset d-comment__recommend-button">' +
-                '<span class="d-comment__recommend-pulse"></span>' +
-                '<i></i>' +
+                '<span class="d-comment__recommend-pulse">x</span>' +
                 '</button>' +
-                '<span class="d-comment__recommend-count js-recommend-count">' +
-                '<span class="d-comment__recommend-count--old">0</span>' +
-                '<span class="d-comment__recommend-count--new">1</span>' +
-                '</span>' +
                 '</div>' +
 
                 '<div class="d-comment__main ">' +
